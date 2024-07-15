@@ -29,7 +29,43 @@
 !/tmp/storage/
 !/tmp/storage/.keep
 
+# Ignore public/assets if using the asset pipeline.
 /public/assets
+
+# Ignore the built coverage directory.
+/coverage/*
+!/coverage/.keep
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
+
+# Ignore local configuration files (optional).
+/config/credentials.yml.enc
+
+# Ignore node_modules directory if using Node.js or Yarn.
+/node_modules
+
+# Ignore yarn-error.log.
+/yarn-error.log
+
+# Ignore byebug command history file.
+/.byebug_history
+
+# Ignore the public/system directory, which may be used for file uploads.
+/public/system/*
+
+# Ignore Spring files.
+/spring/*.pid
+
+# Ignore secret files (optional).
+/config/initializers/secret_token.rb
+/config/secrets.yml
+
+# Ignore .DS_Store files (macOS).
+*.DS_Store
+
+# Ignore .idea directory (JetBrains IDEs).
+.idea/
+
+# Ignore .vscode directory (VS Code).
+.vscode/
