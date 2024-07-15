@@ -6,15 +6,19 @@ require "rails/all"
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
+# Require the custom middleware
+require_relative "../lib/middleware/force_json_format"
+
 module TaskManager
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 7.1
 
-    # Please, add to the `ignore` list any other `lib` subdirectories that do
-    # not contain `.rb` files, or that should not be reloaded or eager loaded.
-    # Common ones are `templates`, `generators`, or `middleware`, for example.
-    config.autoload_lib(ignore: %w(assets tasks))
+    # Add lib/middleware to the autoload paths
+    config.autoload_paths += %W(#{config.root}/lib/middleware)
+
+    # Add the ForceJsonFormat middleware
+    config.middleware.use ForceJsonFormat
 
     # Configuration for the application, engines, and railties goes here.
     #
