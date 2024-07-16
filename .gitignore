@@ -69,3 +69,5 @@
 
 # Ignore .vscode directory (VS Code).
 .vscode/
+
+db/
