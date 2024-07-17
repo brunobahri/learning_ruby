@@ -1,6 +1,5 @@
 class Users::RegistrationsController < Devise::RegistrationsController
   skip_before_action :verify_authenticity_token, if: :json_request?
-  before_action :debug_request, if: :json_request?
 
   respond_to :json
 
@@ -11,7 +10,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
     request.format.json?
   end
 
-  def debug_request
-    Rails.logger.debug "Skipping CSRF for JSON request"
+  def respond_with(resource, _opts = {})
+    if resource.persisted?
+      render json: { user: resource }, status: :created
+    else
+      render json: { errors: resource.errors.full_messages }, status: :unprocessable_entity
+    end
   end
 end
