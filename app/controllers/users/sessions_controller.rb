@@ -15,6 +15,12 @@ class Users::SessionsController < Devise::SessionsController
     end
   end
 
+  def destroy
+    Rails.logger.debug "Current user: #{current_user.inspect}"
+    sign_out(current_user)
+    render json: { message: 'User signed out successfully' }, status: :ok
+  end
+
   protected
 
   def json_request?
