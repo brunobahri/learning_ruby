@@ -13,7 +13,6 @@ class TasksController < ApplicationController
     render json: @task
   end
 
-  # POST /tasks
   def create
     @task = current_user.tasks.build(task_params)
     if @task.save
