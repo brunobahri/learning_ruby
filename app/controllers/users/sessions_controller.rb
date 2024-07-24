@@ -1,8 +1,12 @@
-# app/controllers/users/sessions_controller.rb
 class Users::SessionsController < Devise::SessionsController
   skip_before_action :verify_authenticity_token, if: :json_request?
 
   respond_to :json
+
+  # Sobrescreve a ação new para retornar um erro em requisições GET
+  def new
+    render json: { error: 'Method not allowed' }, status: :method_not_allowed
+  end
 
   def create
     Rails.logger.debug "Parameters received: #{params.inspect}"
