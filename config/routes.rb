@@ -5,6 +5,14 @@ Rails.application.routes.draw do
     registrations: 'users/registrations'
   }
 
+  # Namespace para a API
+  namespace :api do
+    namespace :v1 do
+      resources :tasks, only: [:index, :show, :create, :update, :destroy]
+    end
+  end
+
+  # Rotas padrão para tarefas (se necessário)
   resources :tasks
 
   # Garantir que o login e logout utilizem POST e DELETE respectivamente
