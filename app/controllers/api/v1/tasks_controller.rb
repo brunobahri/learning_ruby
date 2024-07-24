@@ -2,6 +2,7 @@ module Api
   module V1
     class TasksController < ApplicationController
       before_action :authenticate_user!
+      skip_before_action :verify_authenticity_token
       before_action :set_task, only: [:show, :update, :destroy]
 
       # GET /tasks
@@ -36,7 +37,7 @@ module Api
       # DELETE /tasks/:id
       def destroy
         @task.destroy
-        head :no_content
+        render json: { message: 'Task deleted successfully' }, status: :ok
       end
 
       private
