@@ -1,6 +1,15 @@
 require_relative "boot"
 
-require "rails/all"
+# Require only the frameworks you want to use, instead of requiring "rails/all"
+require "active_model/railtie"
+require "active_job/railtie"
+require "active_record/railtie"
+require "action_controller/railtie"
+require "action_mailer/railtie" # Remova se você não estiver usando Action Mailer
+# require "action_view/railtie" # Removido, pois não é necessário para uma API
+# require "action_cable/engine" # Removido, pois não é necessário para uma API
+# require "sprockets/railtie" # Removido, pois não é necessário para uma API
+require "rails/test_unit/railtie"
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
@@ -14,11 +23,25 @@ module TaskManager
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 7.1
 
+    # Only loads a smaller set of middleware suitable for API only apps.
+    config.api_only = true
+
     # Add lib/middleware to the autoload paths
     config.autoload_paths += %W(#{config.root}/lib/middleware)
 
     # Add the ForceJsonFormat middleware
     config.middleware.use ForceJsonFormat
+
+    # Configurar um session store, necessário para Devise
+    config.session_store :cookie_store, key: '_interslice_session'
+
+    # Middleware para gerenciar cookies e sessões
+    config.middleware.use ActionDispatch::Cookies
+    config.middleware.use ActionDispatch::Session::CookieStore
+
+    # Remove middlewares desnecessários
+    config.middleware.delete ActionDispatch::Flash
+    config.middleware.delete ActionDispatch::ContentSecurityPolicy::Middleware
 
     # Configuration for the application, engines, and railties goes here.
     #
