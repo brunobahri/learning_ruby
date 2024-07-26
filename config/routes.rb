@@ -1,4 +1,3 @@
-# config/routes.rb
 Rails.application.routes.draw do
   devise_for :users, controllers: {
     sessions: 'users/sessions',
@@ -16,6 +15,6 @@ Rails.application.routes.draw do
   resources :tasks
 
   # Garantir que o login e logout utilizem POST e DELETE respectivamente
-  post 'login', to: 'users/sessions#create'
-  delete 'logout', to: 'users/sessions#destroy'
+  post 'login', to: 'users/sessions#create', as: :login
+  delete 'logout', to: 'users/sessions#destroy', as: :logout
 end
