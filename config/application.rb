@@ -5,10 +5,7 @@ require "active_model/railtie"
 require "active_job/railtie"
 require "active_record/railtie"
 require "action_controller/railtie"
-require "action_mailer/railtie" # Remova se você não estiver usando Action Mailer
-# require "action_view/railtie" # Removido, pois não é necessário para uma API
-# require "action_cable/engine" # Removido, pois não é necessário para uma API
-# require "sprockets/railtie" # Removido, pois não é necessário para uma API
+require "action_mailer/railtie" 
 require "rails/test_unit/railtie"
 
 # Require the gems listed in Gemfile, including any gems
