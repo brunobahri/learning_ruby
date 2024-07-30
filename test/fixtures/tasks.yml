@@ -1,11 +1,13 @@
-# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
 one:
   title: MyString
   description: MyText
-  user: one
+  due_date: '2024-07-26'
+  status: pending
+  user: one  # Assumindo que o relacionamento está configurado corretamente
 
 two:
-  title: MyString
-  description: MyText
-  user: two
+  title: AnotherTask
+  description: AnotherDescription
+  due_date: '2024-07-27'
+  status: completed
+  user: one  # Assumindo que o relacionamento está configurado corretamente
