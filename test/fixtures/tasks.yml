@@ -1,13 +1,13 @@
 one:
   title: MyString
   description: MyText
-  due_date: '2024-07-26'
+  due_date: 2024-07-26
   status: pending
-  user: one  # Assumindo que o relacionamento está configurado corretamente
+  user: one
 
 two:
-  title: AnotherTask
-  description: AnotherDescription
-  due_date: '2024-07-27'
-  status: completed
-  user: one  # Assumindo que o relacionamento está configurado corretamente
+  title: MyString
+  description: MyText
+  due_date: 2024-07-26
+  status: pending
+  user: two
