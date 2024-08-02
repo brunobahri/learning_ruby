@@ -10,6 +10,9 @@ module Api
         @task.user = @user
         @task.save
         @headers = { 'Authorization': "Bearer #{generate_token_for(@user)}" }
+
+        # Certifique-se de limpar o cache antes de cada teste
+        Rack::Attack.cache.store.clear
       end
 
       test "should get index" do
@@ -79,6 +82,18 @@ module Api
 
         get api_v1_task_url(other_task), headers: @headers, as: :json
         assert_response :not_found
+      end
+
+      test "should throttle requests" do
+        Rack::Attack.cache.store.clear # Limpar cache para garantir estado limpo
+
+        5.times do |i|
+          get api_v1_tasks_url, headers: @headers, as: :json
+          assert_response :success
+        end
+
+        get api_v1_tasks_url, headers: @headers, as: :json
+        assert_response :too_many_requests
       end
 
       private
