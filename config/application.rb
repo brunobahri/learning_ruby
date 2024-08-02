@@ -5,7 +5,7 @@ require "active_model/railtie"
 require "active_job/railtie"
 require "active_record/railtie"
 require "action_controller/railtie"
-require "action_mailer/railtie" 
+require "action_mailer/railtie"
 require "rails/test_unit/railtie"
 
 # Require the gems listed in Gemfile, including any gems
@@ -29,6 +29,9 @@ module TaskManager
     # Add the ForceJsonFormat middleware
     config.middleware.use ForceJsonFormat
 
+    # Add the Rack::Attack middleware
+    config.middleware.use Rack::Attack
+
     # Configurar um session store, necessário para Devise
     config.session_store :cookie_store, key: '_interslice_session'
 
@@ -39,6 +42,11 @@ module TaskManager
     # Remove middlewares desnecessários
     config.middleware.delete ActionDispatch::Flash
     config.middleware.delete ActionDispatch::ContentSecurityPolicy::Middleware
+
+    # Verifique se o cache do Rack::Attack está configurado
+    config.after_initialize do
+      Rails.logger.info "Rack::Attack cache store: #{Rack::Attack.cache.store}"
+    end
 
     # Configuration for the application, engines, and railties goes here.
     #
