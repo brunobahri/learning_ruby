@@ -1,12 +1,13 @@
 class Rack::Attack
+  # Use memory store for the cache
   Rack::Attack.cache.store = ActiveSupport::Cache::MemoryStore.new
 
-  # Allow all local traffic
+  # Safelist local traffic
   safelist('allow-localhost') do |req|
     '127.0.0.1' == req.ip || '::1' == req.ip
   end
 
-  # Allow an IP address to make 5 requests every 5 seconds
+  # Throttle requests to 5 requests per 5 seconds per IP
   throttle('req/ip', limit: 5, period: 5.seconds) do |req|
     req.ip
   end
