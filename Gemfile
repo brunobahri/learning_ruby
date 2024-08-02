@@ -46,3 +46,5 @@ end
 # Authentication gems
 gem "devise"
 gem 'devise-jwt'
+
+gem 'rack-attack'
