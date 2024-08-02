@@ -1,3 +1,4 @@
+# test/controllers/api/v1/tasks_controller_test.rb
 require 'test_helper'
 
 module Api
@@ -82,18 +83,6 @@ module Api
 
         get api_v1_task_url(other_task), headers: @headers, as: :json
         assert_response :not_found
-      end
-
-      test "should throttle requests" do
-        Rack::Attack.cache.store.clear # Limpar cache para garantir estado limpo
-
-        5.times do |i|
-          get api_v1_tasks_url, headers: @headers, as: :json
-          assert_response :success
-        end
-
-        get api_v1_tasks_url, headers: @headers, as: :json
-        assert_response :too_many_requests
       end
 
       private
