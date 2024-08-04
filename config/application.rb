@@ -31,6 +31,10 @@ module TaskManager
     config.middleware.delete ActionDispatch::Flash
     config.middleware.delete ActionDispatch::ContentSecurityPolicy::Middleware
 
+    # Configurar middleware do Rswag
+    config.middleware.use Rswag::Ui::Middleware
+    config.middleware.use Rswag::Api::Middleware
+
     config.after_initialize do
       Rails.logger.info "Rack::Attack cache store: #{Rack::Attack.cache.store}"
     end
