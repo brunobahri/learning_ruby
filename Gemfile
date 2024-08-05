@@ -13,6 +13,7 @@ gem "bootsnap", require: false
 group :development, :test do
   gem "debug", platforms: %i[mri mswin mswin64 mingw x64_mingw]
   gem 'dotenv-rails'
+  gem "rspec-rails", "~> 5.0.0"
 end
 
 group :development do
@@ -28,8 +29,3 @@ end
 gem "devise"
 gem 'devise-jwt'
 gem 'rack-attack'
-
-gem 'rswag-api', '~> 2.13.0'
-gem 'rswag-ui', '~> 2.13.0'
-gem 'rswag-specs', '~> 2.13.0'
-gem 'rspec-rails', '~> 5.0.0'
