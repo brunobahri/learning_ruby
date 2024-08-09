@@ -40,3 +40,4 @@ RSpec.configure do |config|
   # Habilita a validação estrita do schema do OpenAPI
   config.openapi_strict_schema_validation = true
 end
+
