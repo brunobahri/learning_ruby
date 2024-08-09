@@ -60,3 +60,5 @@ Rails.application.configure do
   # Ensure Rack::Attack is used in test environment
   config.middleware.use Rack::Attack
 end
+
+
