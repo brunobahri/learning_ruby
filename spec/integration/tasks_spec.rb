@@ -4,6 +4,7 @@ require 'swagger_helper'
 
 RSpec.describe 'api/v1/tasks', type: :request do
 
+  
   path '/api/v1/tasks' do
 
     get('list tasks') do
@@ -34,6 +35,7 @@ RSpec.describe 'api/v1/tasks', type: :request do
     end
   end
 
+
   path '/api/v1/tasks/{id}' do
     parameter name: 'id', in: :path, type: :string, description: 'id'
 
@@ -45,6 +47,7 @@ RSpec.describe 'api/v1/tasks', type: :request do
         run_test!
       end
     end
+
 
     patch('update task') do
       tags 'Tasks'
